@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isAnimating) return;
     isAnimating = true;
 
-    // 重置动画（保留你原有的强制重绘逻辑，保证动画触发）
+    // 重置动画
     subtitleEl.classList.remove('flip-animation');
     void subtitleEl.offsetWidth;
     subtitleEl.classList.add('flip-animation');
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
       subtitleEl.textContent = currentText;
     }, 300);
 
-    // 动画结束后解锁（0.6s动画时长，精准解锁）
+    // 动画结束后解锁（0.6s动画时长）
     setTimeout(() => {
       subtitleEl.classList.remove('flip-animation');
       isAnimating = false;
