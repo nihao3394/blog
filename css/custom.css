@@ -1,0 +1,23 @@
+/* 完全保留原布局：删除min-width、text-align等所有影响位置的样式 */
+.sub.cap {
+  display: inline-block !important;
+  position: relative !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  transform-style: preserve-3d !important;
+  transition: none !important;
+  /* 彻底移除所有可能改变布局的样式，100%还原原位置 */
+}
+
+/* 上下翻转动画（仅保留X轴翻转，无任何布局影响） */
+@keyframes flipText {
+  0% { transform: rotateX(0deg); opacity: 1; }
+  50% { transform: rotateX(90deg); opacity: 0; }
+  51% { transform: rotateX(-90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+/* 动画类：仅执行1次，无填充模式（避免残留状态影响布局） */
+.flip-animation {
+  animation: flipText 0.6s ease-in-out 1 !important;
+}
