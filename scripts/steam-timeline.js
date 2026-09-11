@@ -39,7 +39,7 @@ hexo.on('generateBefore', async () => {
   try {
     // 检查环境变量是否配置
     if (!STEAM_API_KEY || !STEAM_ID) {
-      throw new Error('❌ STEAM_API_KEY 或 STEAM_ID 未配置，请检查 .env 文件');
+      throw new Error('❌ STEAM_API_KEY 或 STEAM_ID 环境变量未配置，请检查平台设置');
     }
     console.log('✅ 成功加载 Steam API Key 和 Steam ID');
 

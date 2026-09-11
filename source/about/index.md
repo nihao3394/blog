@@ -10,10 +10,9 @@ type: page
 苦逼大学生一枚，b站重度用户，小黑盒住户，最近正在沉迷《杀戮尖塔》，计算机网络
 
 ## 我的B站动态
-{% timeline api=bilibili limit=10 %}
-<!-- 留空即可，数据会从本地JSON自动读取 -->
+{% timeline api=/_data/bilibili-dynamic.json limit=10 %}
 {% endtimeline %}
 
 ## 我的Steam游戏动态
-{% timeline api=steam limit=10 %}
+{% timeline api=/_data/steam-timeline.json limit=10 %}
 {% endtimeline %}
