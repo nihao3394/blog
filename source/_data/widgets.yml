@@ -61,4 +61,13 @@ my_timeline_lite:
   hide: title,footer
   api:
 
+# 网站公告
+announcement:
+  layout: markdown
+  title: 网站公告
+  content: |
+    - 🎉 欢迎来到我的博客
+    - 最近在写技术文档，位于本站“文档”一页，尚未进行本站显示的适配，欢迎围观
+    - 本站持续建设中，敬请期待
+
 
