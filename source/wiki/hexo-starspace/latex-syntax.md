@@ -2,7 +2,7 @@
 title: Markdown中常用LaTeX语法
 date: 2026-09-11 13:59:03
 wiki: hexo-starspace
-layout: wiki
+layout: page
 ---
 
 本文内容用x，y，z，m，n等常见数学符号作为占位符

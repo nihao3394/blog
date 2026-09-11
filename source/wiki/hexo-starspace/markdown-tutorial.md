@@ -2,7 +2,7 @@
 title: Markdown简明教程
 date: 2026-09-11 13:56:55
 wiki: hexo-starspace
-layout: wiki
+layout: page
 ---
 
 md，全称markdown，一种标记语言，语法简单明了，编辑的文本工整好康

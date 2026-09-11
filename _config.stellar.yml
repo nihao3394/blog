@@ -6,6 +6,7 @@ open_graph:
 # 文章类型决定布局风格，有两种风格可选，tech: 默认技术类文章, story: 图文类文章，文字和段落间增距大。
 article:
   type: tech # tech/story
+  license: '' # 关闭默认许可协议，避免 wiki 页面出现空白的 footer 框
 # 可以在 front-matter/topic/wiki 中覆盖此参数
   
 style:
@@ -80,7 +81,7 @@ site_tree:
     leftbar: ghissues, related, recent # for wiki
     rightbar: timeline
     nav_tabs:
-      # 'more': https://github.com/xaoxuu
+      '技术文档': /wiki/hexo-starspace/
   # -- 内容类页面 -- #
   # 博客文章内页配置
   post:
