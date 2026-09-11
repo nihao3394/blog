@@ -7,3 +7,6 @@ public/
 .deploy*/
 _multiconfig.yml
 .env
+
+bilibili-dynamic.json
+steam-timeline.json

@@ -8,8 +8,8 @@ const path = require('path');
 // 获取 Steam API Key 和 Steam64 ID（从.env读取）
 const STEAM_API_KEY = process.env.STEAM_API_KEY;
 const STEAM_ID = process.env.STEAM_ID;
-console.log('🔍 已加载 Steam API Key：');
-console.log('🔍 已加载 Steam ID：');
+console.log('🔍 已加载 Steam API Key');
+console.log('🔍 已加载 Steam ID');
 
 // 生成的本地 JSON 文件路径
 const JSON_PATH = path.join(__dirname, '../source/_data/steam-timeline.json');

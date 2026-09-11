@@ -35,6 +35,9 @@ tree:
     - tag-plugins/data
     - tag-plugins/container
     - comments
+  '技术文档':
+    - Markdown简明教程
+    - Markdown中常用LaTeX语法
   '文档系统':
     - wiki-settings
   '进阶玩法':

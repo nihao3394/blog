@@ -123,8 +123,8 @@ widgets:
     steam_title: 我的Steam游戏动态
     limit: 10 # 通用条数限制（B站/Steam共用，也可单独拆分为bilibili_limit/steam_limit）
     api:
-      bilibili: /bilibili-dynamic.json
-      steam: /steam-timeline.json
+      bilibili: /_data/bilibili-dynamic.json
+      steam: /_data/steam-timeline.json
 
 
 # 评论开关
