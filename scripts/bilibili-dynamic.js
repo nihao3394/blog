@@ -17,9 +17,9 @@ const JSON_PATH = path.join(__dirname, '../source/_data/bilibili-dynamic.json');
 
 // 检查必要环境变量是否配置
 if (!BILIBILI_COOKIE || !BILIBILI_API_URL) {
-  console.error('❌ [B站动态] 请在 .env 文件中配置 BILIBILI_COOKIE 和 BILIBILI_API_URL！');
+  console.error('❌ [B站动态] 未检测到 BILIBILI_COOKIE 或 BILIBILI_API_URL 环境变量！');
   // 非强制退出（避免因B站配置缺失导致Hexo整体构建失败）
-  // process.exit(1); 
+  // process.exit(1);
 }
 
 // 创建禁用证书验证的代理（解决unable to verify the first certificate错误）
