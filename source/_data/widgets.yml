@@ -1,0 +1,64 @@
+# 这是文章/文档的目录树组件，显示文章和文档的目录结构
+toc:
+  layout: toc
+  list_number: false # 是否显示序号
+  min_depth: 2 # 建议不要低于 2 即从 H2 标签开始解析（H1标签用于文章大标题）
+  max_depth: 5 # 5 代表最多解析到 H5 标签
+  fallback: recent # Use a backup widget when toc does not exist.
+  collapse: false # true / false / auto (始终折叠/不折叠/自动折叠)
+
+
+# 在 wiki 板块显示的是最近更新的 wiki 页面，其余地方显示最近更新的文章。
+recent:
+  layout: recent
+  rss: # /atom.xml # npm i hexo-generator-feed
+  limit: 5 # Count of posts
+# hexo 的覆盖规则是合并而不是替换，所以若不想使用 recent，除了在 _config.stellar.yml 中删除 recent 你还需要将此处的 recent 置空
+
+
+# 相关文档组件，用于显示具有相同 tags 的其它项目列表，暂不支持自定义内容
+related:
+  layout: related
+
+
+linklist:
+  layout: linklist
+  columns: 1 
+  items:
+    - icon: '<svg...></svg>' # 或者 icons.yml 中设置的 icon 名称
+      title: 关于
+      url: /about/
+
+
+# 这是一个自由度很高的标签，可以显示 markdown 文本内容
+welcome:
+  layout: markdown
+  title: 
+  linklist: # 与 linklist 组件写法相同
+    columns: 1 
+    # items:
+      # - icon:
+        # title: 
+        # url:
+  content: |
+    在这里给大家跳段街舞吧！ጿጿኈቼዽጿኈቼዽጿኈቼዽጿኈቼዽጿኈቼዽጿዽጿኈቼዽጿኈቼዽጿኈ，呼～累死了
+  # src: # 可以设置外部 md 文件链接
+
+
+# 时间线组件，动态数据是从 GitHub Issues 中拉取的
+timeline:
+  layout: timeline
+  title: 近期动态
+  # api: https://api.github.xaox.cc/repos/xaoxuu/hexo-theme-stellar/issues # 若你想限制数量，在api链接后面加上?per_page=1指限制为1条
+  user: # 是否过滤只显示某个人发布的内容，如果要筛选多人，用英文逗号隔开
+  hide: # title,footer # 隐藏标题或底部 # 此功能需要 Stellar v1.13.0
+
+
+my_timeline_lite:
+  layout: timeline
+  title: 近期动态
+  user: 你好
+  hide: title,footer
+  api:
+
+

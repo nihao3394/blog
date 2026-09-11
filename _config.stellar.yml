@@ -1,0 +1,133 @@
+# 默认生成 Open Graph 标签，如果您不希望生成它，可以在主题配置文件中关闭
+open_graph:
+  enable: true
+  twitter_id: # for open_graph meta
+
+# 文章类型决定布局风格，有两种风格可选，tech: 默认技术类文章, story: 图文类文章，文字和段落间增距大。
+article:
+  type: tech # tech/story
+# 可以在 front-matter/topic/wiki 中覆盖此参数
+  
+style:
+  leftbar:
+    background-image: /images/黑色背景.png
+  color:
+    theme: 'hsl(192 98% 55%)' # 主题色
+    accent: 'hsl(14 100% 57%)' # 强调色
+    link: 'hsl(207 90% 54%)' # 超链接颜色
+
+    
+# 侧边栏主功能导航菜单
+menubar:
+  columns: 3 # 一行多少个
+  items: # 可按照自己需求增加，符合以下格式即可
+    # - id: post # 页面中高亮的 menu_id
+    #   theme: '#1BCDFC' # 高亮时的颜色，仅 svg 中 fill="currentColor" 时有效
+    #   icon: solar:documents-bold-duotone # 支持 svg/img 标签，可以定义在 icons.yml 文件中，也支持外部图片的 URL
+    #   title: 博客 # 标题
+    #   url: / # 跳转链接，支持相对路径和绝对路径
+    # - id: wiki
+    #   theme: '#3DC550'
+    #   icon: solar:notebook-bookmark-bold-duotone
+    #   title: 文档
+    #   url: /wiki/
+    # - id: explore
+    #   theme: '#FA6400'
+    #   icon: solar:planet-bold-duotone
+    #   title: 探索
+    #   url: /explore/
+    # - id: social
+    #   theme: '#F44336'
+    #   icon: solar:chat-square-like-bold-duotone
+    #   title: 社交
+    #   url: /friends/
+    - id: blog
+      theme: '#C8C8C8'
+      title: 博客
+      url: /
+    - id: documents
+      theme: '#C8C8C8'
+      title: 文档
+      url: /wiki/
+    - id: exploration
+      theme: '#C8C8C8'
+      title: 发现
+      url: /explore/
+
+# 站点主结构树
+site_tree:
+  # -- 列表类页面 -- #
+  # 主页配置
+  home:
+    leftbar: welcome, recent
+    rightbar: timeline
+  # 博客列表页配置
+  index_blog:
+    base_dir: blog # 只影响自动生成的页面路径
+    menu_id: post # 未在 front-matter 中指定 menu_id 时，layout 为 post 的页面默认使用这里配置的 menu_id
+    leftbar: welcome, recent # for categories/tags/archives
+    rightbar: timeline
+    nav_tabs:  # 近期发布 分类 标签 专栏 归档 and ...
+      # '朋友文章': /friends/rss/
+  # 博客专栏列表页配置
+  index_topic:
+    base_dir: topic # 只影响自动生成的页面路径
+    menu_id: post # 未在 front-matter 中指定 menu_id 时，layout 为 topic 的页面默认使用这里配置的 menu_id
+  # 文档列表页配置
+  index_wiki:
+    base_dir: wiki # 只影响自动生成的页面路径
+    menu_id: wiki # 未在 front-matter 中指定 menu_id 时，layout 为 wiki 的页面默认使用这里配置的 menu_id
+    leftbar: ghissues, related, recent # for wiki
+    rightbar: timeline
+    nav_tabs:
+      # 'more': https://github.com/xaoxuu
+  # -- 内容类页面 -- #
+  # 博客文章内页配置
+  post:
+    menu_id: post # 未在 front-matter 中指定 menu_id 时，layout 为 post 的页面默认使用这里配置的 menu_id
+    leftbar: related, ghrepo, ghissues, recent # for pages using 'layout:post'
+    rightbar: ghrepo, toc
+  # 博客专栏文章内页配置
+  topic:
+    menu_id: post
+  # 文档内页配置
+  wiki:
+    menu_id: wiki # 未在 front-matter 中指定 menu_id 时，layout 为 wiki 的页面默认使用这里配置的 menu_id
+    leftbar: tree, ghissues, related, recent # for wiki
+    rightbar: ghrepo, toc
+  # 作者信息配置
+  author: 
+    base_dir: author # 只影响自动生成的页面路径
+    menu_id: post
+    leftbar: recent, timeline
+    rightbar: timeline
+  # 错误页配置
+  error_page:
+    menu_id: post
+    '404': '/404.html'
+    leftbar: recent, timeline
+    rightbar: timeline
+  # 其它自定义页面配置 layout: page
+  page:
+    leftbar: recent
+    rightbar: timeline, toc
+
+
+widgets:
+  timeline:
+    enable: true
+    title: 我的动态 # 通用标题
+    show_bilibili: true # 动态开关
+    show_steam: true    # Steam动态开关
+    bilibili_title: 我的bilibili动态
+    steam_title: 我的Steam游戏动态
+    limit: 10 # 通用条数限制（B站/Steam共用，也可单独拆分为bilibili_limit/steam_limit）
+
+
+# 评论开关
+comments:
+  service: utterances
+  beaudar:
+    repo: nihao3394/blog-comments
+    issue-term: pathname  # 评论关联规则：按博客路径匹配Issues（推荐）
+    theme: preferred-color-scheme  # 主题跟随系统，可选：github-light/github-dark

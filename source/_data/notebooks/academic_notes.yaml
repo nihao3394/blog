@@ -1,0 +1,19 @@
+name: academic_notes
+title: 大学学业笔记本
+icon: 
+description: 分享并总结一些自己学过科目的内容
+base_dir: /notes/academic
+
+sort: 1
+per_page: 10
+order_by: -updated
+license: true
+share: true
+
+menu_id: notes/academic
+# 笔记列表页的左/右侧栏
+# leftbar: [tagtree, recent]
+# rightbar: []
+# 笔记页的左/右侧栏
+# note_leftbar: [tagtree, recent]
+# note_rightbar: [toc]

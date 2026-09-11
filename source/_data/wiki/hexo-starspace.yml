@@ -1,0 +1,47 @@
+name: Starspace
+title: Starspace in motion...
+subtitle: 
+tags: 文档
+icon: 
+cover: 
+description: Stellar 是一个内置文档系统的简约商务风 Hexo 主题，支持丰富的标签和动态数据组件。
+repo: https://github.com/nihao3394/blog
+search:
+  filter: /wiki/hexo-starspace/
+  placeholder: 在 文档 中搜索...
+leftbar: 
+  - tree
+  - timeline_stellar_releases
+  - related
+comment_title: '评论区仅供交流，有问题请提 [issue](https://github.com/xaoxuu/hexo-theme-stellar/issues) 反馈。'
+comments:
+  service: giscus
+  giscus:
+    data-repo: xaoxuu/hexo-theme-stellar
+    data-mapping: number
+    data-term: 226
+base_dir: /wiki/hexo-starspace/
+tree:
+  '快速开始':
+    - index
+    - examples
+    - releases
+  '基本使用':
+    - theme-settings
+    - pages
+    - sidebar
+    - tag-plugins
+    - tag-plugins/express
+    - tag-plugins/data
+    - tag-plugins/container
+    - comments
+  '文档系统':
+    - wiki-settings
+  '进阶玩法':
+    - widgets
+    - advanced-settings
+    - notes
+  '技术支持':
+    - articles
+    - todo
+    - contributors

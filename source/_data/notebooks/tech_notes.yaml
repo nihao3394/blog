@@ -1,0 +1,19 @@
+name: tech-notes
+title: 技术笔记本
+icon: 
+description: 没有技术的技术笔记——正在学习...
+base_dir: /notes/tech
+
+sort: 1
+per_page: 10
+order_by: -updated
+license: true
+share: true
+
+menu_id: notes/tech
+# 笔记列表页的左/右侧栏
+# leftbar: [tagtree, recent]
+# rightbar: []
+# 笔记页的左/右侧栏
+# note_leftbar: [tagtree, recent]
+# note_rightbar: [toc]
