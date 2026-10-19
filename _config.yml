@@ -113,7 +113,7 @@ theme_config:
   inject:
     head:
       - <link rel="stylesheet" href="/css/custom.css">
-    bottom:
+    script:
       - <script src="/js/stellar.custom.js"></script>
 
 # Deployment
