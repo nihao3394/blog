@@ -258,32 +258,38 @@ function initMusicPlayer() {
       result.sort(function (a, b) { return a.time - b.time; });
       return result;
     }
-    function renderLyrics3(idx) {
-      var prev = idx > 0 ? curLrc[idx - 1].text : '';
-      var cur = curLrc[idx] ? curLrc[idx].text : '';
-      var next = idx < curLrc.length - 1 ? curLrc[idx + 1].text : '';
-      lyricsEl.innerHTML =
-        '<div class="lrc-line prev">' + (prev || '&nbsp;') + '</div>' +
-        '<div class="lrc-line active">' + (cur || '&nbsp;') + '</div>' +
-        '<div class="lrc-line next">' + (next || '&nbsp;') + '</div>';
+    function renderAllLyrics() {
+      lyricsEl.innerHTML = curLrc.map(function (l, i) {
+        return '<div class="lrc-line" data-i="' + i + '">' + l.text + '</div>';
+      }).join('');
     }
     function updateLyrics(t) {
       if (!curLrc.length) return;
       var idx = -1;
       for (var i = 0; i < curLrc.length; i++) { if (t >= curLrc[i].time) idx = i; else break; }
-      if (idx !== curLrcIndex) { curLrcIndex = idx; renderLyrics3(idx); }
+      if (idx !== curLrcIndex) {
+        curLrcIndex = idx;
+        var lines = lyricsEl.querySelectorAll('.lrc-line');
+        lines.forEach(function (el, i) { el.classList.toggle('active', i === idx); });
+        if (lines[idx]) {
+          var cRect = lyricsEl.getBoundingClientRect();
+          var lRect = lines[idx].getBoundingClientRect();
+          var top = lyricsEl.scrollTop + (lRect.top - cRect.top) - (cRect.height / 2) + (lRect.height / 2);
+          lyricsEl.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      }
     }
     function loadLyrics(song) {
       curLrc = []; curLrcIndex = -1;
-      lyricsEl.innerHTML = '<div class="lrc-line prev">&nbsp;</div><div class="lrc-line active">加载歌词中...</div><div class="lrc-line next">&nbsp;</div>';
+      lyricsEl.innerHTML = '<div class="lrc-line">加载歌词中...</div>';
       var src = song.lrc || '';
-      if (!src) { lyricsEl.innerHTML = '<div class="lrc-line prev">&nbsp;</div><div class="lrc-line active">暂无歌词</div><div class="lrc-line next">&nbsp;</div>'; return; }
+      if (!src) { lyricsEl.innerHTML = '<div class="lrc-line">暂无歌词</div>'; return; }
       var p = /^https?:\/\//.test(src) ? fetch(src).then(function (r) { return r.text(); }) : Promise.resolve(src);
       p.then(function (text) {
         curLrc = parseLRC(text);
-        if (curLrc.length === 0) lyricsEl.innerHTML = '<div class="lrc-line prev">&nbsp;</div><div class="lrc-line active">暂无歌词</div><div class="lrc-line next">&nbsp;</div>';
-        else curLrcIndex = -1;
-      }).catch(function () { lyricsEl.innerHTML = '<div class="lrc-line prev">&nbsp;</div><div class="lrc-line active">暂无歌词</div><div class="lrc-line next">&nbsp;</div>'; });
+        if (curLrc.length === 0) lyricsEl.innerHTML = '<div class="lrc-line">暂无歌词</div>';
+        else renderAllLyrics();
+      }).catch(function () { lyricsEl.innerHTML = '<div class="lrc-line">暂无歌词</div>'; });
     }
 
     /* ---- 标题轮播 ---- */
@@ -439,11 +445,30 @@ function initMusicPlayer() {
       updateVolUI();
     });
 
-    progressWrap.addEventListener('click', function (e) {
+    // 进度条：支持点击和拖拽，拖拽时即时跟手
+    var progressDragging = false;
+    function seekTo(e) {
       var rect = progressWrap.getBoundingClientRect();
       var pct = (e.clientX - rect.left) / rect.width;
-      if (audio.duration) audio.currentTime = pct * audio.duration;
-    });
+      pct = Math.max(0, Math.min(1, pct));
+      if (audio.duration) {
+        var targetTime = pct * audio.duration;
+        audio.currentTime = targetTime;
+        progressBar.style.transition = 'none';   // 拖拽时禁用过渡，立即跟手
+        progressBar.style.width = (pct * 100) + '%';
+        timeCur.textContent = fmt(targetTime);
+      }
+    }
+    function endProgressDrag() {
+      progressDragging = false;
+      progressBar.style.transition = 'width 0.1s linear';  // 松手后恢复过渡
+    }
+    progressWrap.addEventListener('mousedown', function (e) { progressDragging = true; seekTo(e); });
+    document.addEventListener('mousemove', function (e) { if (progressDragging) seekTo(e); });
+    document.addEventListener('mouseup', endProgressDrag);
+    progressWrap.addEventListener('touchstart', function (e) { progressDragging = true; seekTo(e.touches[0]); }, { passive: true });
+    document.addEventListener('touchmove', function (e) { if (progressDragging && e.touches.length) seekTo(e.touches[0]); }, { passive: true });
+    document.addEventListener('touchend', endProgressDrag);
 
     /* ---- 初始化状态 ---- */
     mode = parseInt(load(K.mode, '0')) || 0;
